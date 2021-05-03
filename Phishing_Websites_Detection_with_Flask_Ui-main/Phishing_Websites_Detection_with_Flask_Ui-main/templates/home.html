@@ -1,0 +1,31 @@
+{% extends 'layout.html'%} {% block title %} Phishing Website Detection
+{% endblock title %} {% block body %}
+<div class="jumbotron text-center bp3-card">
+	<center>
+		<h2 style="font-family: 'Roboto Black';">Phishing Website Detection</h2>
+
+		<form method="POST" action="{{url_for('getURL')}}">
+			<div class=form-group>
+				<table cellpadding=10 cellspacing=25>
+					<tr>
+						<td><input type=text name="url" placeholder="Enter a url"
+							value="{{request.form.url}}" required size=90 /></td>
+						<td align="center"><input class="btn btn-info" type=submit
+							value="CheckURL" /></td>
+
+					</tr>
+					<tr>
+						<td align="center">{% if error %} {% if error == 'Not a Phishy website'
+							%}
+							<h4 style="color: limegreen;">{{error}}</h4>
+							{% else %}
+							<h4 style="color: orange;">{{error}}</h4>
+							{% endif %} {% endif %}
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</center>
+</div>
+{% endblock body %}
